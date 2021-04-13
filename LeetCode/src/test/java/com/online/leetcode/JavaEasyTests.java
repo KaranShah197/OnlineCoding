@@ -1,18 +1,16 @@
 package com.online.leetcode;
 
+import com.online.leetcode.controller.easy.SetMismatch;
 import com.online.leetcode.controller.easy.SingleRowKeyboard;
 import com.online.leetcode.controller.easy.DistributeCandies;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.Assert.*;
 
 //@SpringBootTest
 public class JavaEasyTests {
@@ -22,17 +20,20 @@ public class JavaEasyTests {
      */
     SingleRowKeyboard srk;
     DistributeCandies dc;
+    SetMismatch sm;
 
     @Before
     public void setUp() throws Exception {
         srk = new SingleRowKeyboard();
         dc = new DistributeCandies();
+        sm = new SetMismatch();
     }
 
     @After
     public void tearDown() throws Exception {
         srk = null;
         dc = null;
+        sm = null;
     }
 
     /**
@@ -57,7 +58,7 @@ public class JavaEasyTests {
      * DistributeCandies tests
      */
     @Test //2
-    public void distributeCandies() {
+    public void distributeCandiesTests() {
         Assert.assertTrue("1st test case",
                 dc.distributeCandiesMethod(new int[]{1, 1, 2, 2, 3, 3}) == 3);
 
@@ -69,6 +70,19 @@ public class JavaEasyTests {
                 dc.distributeCandiesMethod(new int[]{1,1,2,3}));
         Assert.assertNotEquals(dc.distributeCandiesMethod(new int[]{1,1,2,3}),
                 dc.distributeCandiesMethod(new int[]{1,1,2,2,3,3}));
+    }
+
+    /**
+     * SetMisMatch tests
+     */
+
+    @Test //3
+    public void setMisMatchTests() {
+
+        Assert.assertArrayEquals(sm.findErrorNums(new int[]{1,2,2,4}), new int[]{2,3});
+        Assert.assertArrayEquals(sm.findErrorNums(new int[]{1,1}), new int[]{1,2});
+
+        assertArrayEquals(sm.findErrorNums(new int[]{1,1}), new int[]{1,2});
     }
 
 }
